@@ -13,8 +13,10 @@
 namespace su\security;
 
 
-class BaseCrypt
+class Base
 {
+    const OPEN_SSL='确认已安装openssl扩展，并开启';
+    const OPEN_HASH='确认已开启hash扩展';
     /**
      * 检查该扩展模块是否存在
      * Author: Mr.hu.

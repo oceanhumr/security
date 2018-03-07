@@ -14,7 +14,7 @@
 namespace su\security;
 
 
-class PasswordHash extends BaseCrypt
+class PasswordHash extends Base
 {
 
     //以下是在使用passwordhash中要使用到的常量
@@ -42,7 +42,7 @@ class PasswordHash extends BaseCrypt
      * @param array $options
      * Return bool|string
      */
-    public static function get_pass_hash($password,$algo=PASSWORD_BCRYPT,$options=[])
+    public static function get_pass_hash($password,$algo=PASSWORD_DEFAULT,$options=[])
     {
         return password_hash($password,$algo,$options);
     }
@@ -56,7 +56,7 @@ class PasswordHash extends BaseCrypt
      */
     public static function verify_pass($pass,$hash)
     {
-        return password_hash($pass,$hash);
+        return password_verify($pass,$hash);
     }
 
 

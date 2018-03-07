@@ -13,9 +13,11 @@
 namespace su\security;
 
 
-class Hash extends BaseCrypt
+class Hash extends Base
 {
-
+    const EXTENSION_NAME='hash';
+    const DEFAULT_ALGO='md5';
+    const DEFAULT_KEY='7eb2b5c37443418fc77c136dd20e859c';
 
     /**
      * 获取已注册的哈希算法列表
@@ -24,8 +26,8 @@ class Hash extends BaseCrypt
      */
     public static function get_algos()
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash_algos();
     }
@@ -40,8 +42,8 @@ class Hash extends BaseCrypt
      */
     public static function verify_hash_equals($correct_hash,$user_hash)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash_equals($correct_hash,$user_hash);
     }
@@ -56,10 +58,10 @@ class Hash extends BaseCrypt
      * @param bool $raw_output 是否是二进制   false则是16进制
      * Return string
      */
-    public static function hmac_file ($file_path,$key='7eb2b5c37443418fc77c136dd20e859c',$algo='md5',$raw_output=false)
+    public static function hmac_file ($file_path,$key=self::DEFAULT_KEY,$algo=self::DEFAULT_ALGO,$raw_output=false)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash_hmac_file($algo,$file_path,$key,$raw_output);
     }
@@ -74,10 +76,10 @@ class Hash extends BaseCrypt
      * @param bool $raw_output
      * Return void
      */
-    public static function hmac($data,$key='7eb2b5c37443418fc77c136dd20e859c',$algo='md5',$raw_output=false)
+    public static function hmac($data,$key=self::DEFAULT_KEY,$algo=self::DEFAULT_ALGO,$raw_output=false)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash_hmac($algo,$data,$key,$raw_output);
     }
@@ -94,10 +96,10 @@ class Hash extends BaseCrypt
      * @param bool $raw_output
      * Return void
      */
-    public static function pbkdf2($password,$salt,$algo='md5',$iterations=100,$length=32,$raw_output=false)
+    public static function pbkdf2($password,$salt,$algo=self::DEFAULT_ALGO,$iterations=100,$length=32,$raw_output=false)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash_pbkdf2($algo,$password,$salt,$iterations,$length,$raw_output);
     }
@@ -110,10 +112,10 @@ class Hash extends BaseCrypt
      * @param string $algo
      * Return void
      */
-    public static function hash_str($data,$algo='md5')
+    public static function hash_str($data,$algo=self::DEFAULT_ALGO)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
         return hash($algo,$data);
     }
@@ -128,10 +130,10 @@ class Hash extends BaseCrypt
      * @param bool $raw_output
      * Return string
      */
-    public static function hash_str_with_key($values=[],$algo='md5',$key=null,$raw_output=false)
+    public static function hash_str_with_key($values=[],$algo=self::DEFAULT_ALGO,$key=null,$raw_output=false)
     {
-        if(false===parent::checkExtension('hash')){
-            throw new \Exception('请先开启hash扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_HASH);
         }
 
         if($key){

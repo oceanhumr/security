@@ -13,13 +13,15 @@
 namespace su\security;
 
 
-class OpenSsl extends BaseCrypt
+class OpenSsl extends Base
 {
+    const EXTENSION_NAME='openssl';
+    const DEFAULT_METHOD='AES-128-CBC';
 
-    public static function decrypt($data,$key,$method='AES-128-CBC')
+    public static function decrypt($data,$key,$method=self::EXTENSION_NAME)
     {
-        if(false===parent::checkExtension('openssl')){
-            throw new \Exception('请先安装openssl扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_SSL);
         }
         return openssl_decrypt($data,$method,$key);
     }
@@ -33,10 +35,10 @@ class OpenSsl extends BaseCrypt
      * @param string $method
      * Return string
      */
-    public static function encrypt($data,$key,$method='AES-128-CBC')
+    public static function encrypt($data,$key,$method=self::EXTENSION_NAME)
     {
-        if(false===parent::checkExtension('openssl')){
-            throw new \Exception('请先安装openssl扩展');
+        if(false===parent::checkExtension(static::EXTENSION_NAME)){
+            throw new \Exception(static::OPEN_SSL);
         }
         return openssl_encrypt($data,$method,$key);
     }
