@@ -24,6 +24,9 @@ class Hash extends BaseCrypt
      */
     public static function get_algos()
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash_algos();
     }
 
@@ -37,6 +40,9 @@ class Hash extends BaseCrypt
      */
     public static function verify_hash_equals($correct_hash,$user_hash)
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash_equals($correct_hash,$user_hash);
     }
 
@@ -52,6 +58,9 @@ class Hash extends BaseCrypt
      */
     public static function hmac_file ($file_path,$key='7eb2b5c37443418fc77c136dd20e859c',$algo='md5',$raw_output=false)
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash_hmac_file($algo,$file_path,$key,$raw_output);
     }
 
@@ -67,6 +76,9 @@ class Hash extends BaseCrypt
      */
     public static function hmac($data,$key='7eb2b5c37443418fc77c136dd20e859c',$algo='md5',$raw_output=false)
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash_hmac($algo,$data,$key,$raw_output);
     }
 
@@ -84,6 +96,9 @@ class Hash extends BaseCrypt
      */
     public static function pbkdf2($password,$salt,$algo='md5',$iterations=100,$length=32,$raw_output=false)
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash_pbkdf2($algo,$password,$salt,$iterations,$length,$raw_output);
     }
 
@@ -97,6 +112,9 @@ class Hash extends BaseCrypt
      */
     public static function hash_str($data,$algo='md5')
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
         return hash($algo,$data);
     }
 
@@ -112,6 +130,9 @@ class Hash extends BaseCrypt
      */
     public static function hash_str_with_key($values=[],$algo='md5',$key=null,$raw_output=false)
     {
+        if(false===parent::checkExtension('hash')){
+            throw new \Exception('请先开启hash扩展');
+        }
 
         if($key){
             $resource=hash_init($algo,HASH_HMAC,$key);

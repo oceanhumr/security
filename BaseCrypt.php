@@ -15,5 +15,27 @@ namespace su\security;
 
 class BaseCrypt
 {
+    /**
+     * 检查该扩展模块是否存在
+     * Author: Mr.hu.
+     * @param $extension_name
+     * Return void
+     */
+    public static function checkExtension($extension_name)
+    {
+        return get_extension_funcs($extension_name)===false?false:true;
+    }
+
+
+    /**
+     * 检查当前系统中的php版本是否大于最低版本号
+     * Author: Mr.hu.
+     * @param $version
+     * Return mixed
+     */
+    public static function checkVersion($version)
+    {
+        return version_compare(PHP_VERSION,$version,'>=');
+    }
 
 }
