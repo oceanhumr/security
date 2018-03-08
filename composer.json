@@ -1,0 +1,13 @@
+{
+    "name": "su/security",
+    "description": "关于数据加密常方法。其中包含对、非对称加密、数字签名、openssl 等",
+    "type": "library",
+    "authors": [
+        {
+            "name": "MrHu",
+            "email": "huhaiyang7788@163.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
